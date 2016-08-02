@@ -4,11 +4,12 @@
 // @description Detect DOIs as hyperlinks
 // @include     http://www.researchgate.net/publication/*
 // @include     https://www.researchgate.net/publication/*
-// @version     0.0.2
+// @version     0.0.3a
 // @grant       GM_xmlhttpRequest
 // ==/UserScript==
 
-
+// TODO: Make hyperlink by without using the alert box
+// TODO: Avoid Content Security Policy (CSP) or HTTP access control (CORS) violations
 
 function rgdoi()
 {
