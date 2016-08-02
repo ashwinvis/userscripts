@@ -1,7 +1,3 @@
-# Greasemonkey #
-
-A collection of my greasemonkey scripts.
-
 ## RGdoi ##
 A script to convert DOI links in Researchgate to hyperlinks.
 
