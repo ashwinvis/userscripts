@@ -4,7 +4,7 @@
 // @description Detect DOIs as hyperlinks
 // @include     http://www.researchgate.net/publication/*
 // @include     https://www.researchgate.net/publication/*
-// @version     0.0.2b
+// @version     0.0.3
 // @grant       none
 // ==/UserScript==
 
@@ -19,7 +19,7 @@ var extractRegexp = /(?:DOI:\s)([\w\.\/\-])*/g;
 
 function openDoi(win)
 {
-    var root = "http://dx.doi.org/";
+    var root = "https://doi.org/";
 
     var text = win.document.body.textContent;
     while((match = matchRegexpGlobal.exec(text)) != null) {
@@ -38,7 +38,7 @@ function openDoi(win)
 function replaceElement(doi) {
     var divs = document.querySelectorAll(".publication-meta-secondary");
     var element = divs[0];
-    var replace = '<a href="http://dx.doi.org/' + doi +'">' + element.innerHTML +  '</a>';
+    var replace = '<a href="https://doi.org/' + doi +'">' + element.innerHTML +  '</a>';
     element.innerHTML = replace;
 }
 
