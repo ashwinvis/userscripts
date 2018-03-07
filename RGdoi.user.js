@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name        RGdoi
-// @namespace   https://github.com/ashwinvis/greasyfork
+// @namespace   https://github.com/ashwinvis/userscripts
 // @description Convert DOI links in Researchgate to hyperlinks
 // @author      ashwinvis
 // @license     GPL-3.0+; http://www.gnu.org/licenses/gpl-3.0.txt
 // @include     http://www.researchgate.net/publication/*
 // @include     https://www.researchgate.net/publication/*
 // @version     0.0.5
-// @supportURL  https://github.com/ashwinvis/greasyfork
+// @supportURL  https://github.com/ashwinvis/userscripts
 // @updateURL   https://openuserjs.org/meta/ashwinvis/RGdoi.meta.js
 // @grant       GM.xmlHttpRequest
 // ==/UserScript==
