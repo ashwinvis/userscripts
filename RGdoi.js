@@ -4,14 +4,13 @@
 // @description Detect DOIs as hyperlinks
 // @include     http://www.researchgate.net/publication/*
 // @include     https://www.researchgate.net/publication/*
-// @version     0.0.4a
+// @version     0.0.5
 // @grant       GM.xmlHttpRequest
 // ==/UserScript==
 
-// TODO: Modify regexp to work after logging in.
-
-var matchRegexpGlobal = /DOI:.*/mg;
+var matchRegexpGlobal = /DOI.*/mg;
 var extractRegexp = /(?:DOI:\s)([\w\.\/\-])*/g;
+var extractRegexpAfterLogin = /<li(.*?)>(.*?)<\/li>/;
 
 function extractDoiAndHyperlink(text)
 {
@@ -20,20 +19,41 @@ function extractDoiAndHyperlink(text)
     // var text = window.document.body.textContent;
     while((match = matchRegexpGlobal.exec(text)) != null) {
         var doi = extractRegexp.exec(match[0]);
+        var doiLogin = extractRegexpAfterLogin.exec(match[0]);
         if (doi != null) {
+            console.log("DOI detected: " + doi[0]);
             var doi_link = doi[0].replace(/DOI\:\s/i, "");
             replaceElement(doi_link);
         }
+        else if (doiLogin != null) {
+            console.log("DOI detected: " + doiLogin[2]);
+            replaceElementAfterLogin(doiLogin[2]);
+        }
+        else {
+            console.log("DOI not detected by extract regex!")
+        }
     }
+    console.log("End of RGdoi.js")
 }
 
 
 function replaceElement(doi) {
     var divs = document.querySelectorAll(".publication-meta-secondary");
     var element = divs[0];
+    console.log("Wrapping hyperlink on " + element.innerHTML)
     var replace = '<a href="https://doi.org/' + doi +'">' + element.innerHTML +  '</a>';
     element.innerHTML = replace;
 }
+
+
+function replaceElementAfterLogin(doi) {
+    var lis = document.querySelectorAll(".nova-e-list__item");
+    var element = lis[3];
+    console.log("Wrapping hyperlink on " + element.innerHTML)
+    var replace = '<a href="https://doi.org/' + doi +'">' + element.innerHTML +  '</a>';
+    element.innerHTML = replace;
+}
+
 
 // Old method: which gets blocked 
 // extractDoiAndHyperlink(window.top)
