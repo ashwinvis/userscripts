@@ -4,34 +4,27 @@
 // @description Detect DOIs as hyperlinks
 // @include     http://www.researchgate.net/publication/*
 // @include     https://www.researchgate.net/publication/*
-// @version     0.0.3
-// @grant       none
+// @version     0.0.4a
+// @grant       GM.xmlHttpRequest
 // ==/UserScript==
 
-
-function rgdoi()
-{
-    openDoi(window.top)
-}
+// TODO: Modify regexp to work after logging in.
 
 var matchRegexpGlobal = /DOI:.*/mg;
 var extractRegexp = /(?:DOI:\s)([\w\.\/\-])*/g;
 
-function openDoi(win)
+function extractDoiAndHyperlink(text)
 {
     var root = "https://doi.org/";
 
-    var text = win.document.body.textContent;
+    // var text = window.document.body.textContent;
     while((match = matchRegexpGlobal.exec(text)) != null) {
         var doi = extractRegexp.exec(match[0]);
         if (doi != null) {
             var doi_link = doi[0].replace(/DOI\:\s/i, "");
-            alert('DOI detected');
             replaceElement(doi_link);
         }
     }
-    for (var i = 0, n = win.frames.length; i < n; i++)
-        openDoi(win.frames[i]);
 }
 
 
@@ -42,5 +35,16 @@ function replaceElement(doi) {
     element.innerHTML = replace;
 }
 
+// Old method: which gets blocked 
+// extractDoiAndHyperlink(window.top)
 
-rgdoi()
+GM.xmlHttpRequest({
+  method: "GET",
+  url: location.href,
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  onload: function(response) {
+    extractDoiAndHyperlink(response.responseText);
+  }
+});
