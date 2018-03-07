@@ -34,17 +34,17 @@ function extractDoiAndHyperlink(text)
             replaceElementAfterLogin(doiLogin[2]);
         }
         else {
-            console.log("DOI not detected by extract regex!")
+            console.log("DOI not detected by extract regex!");
         }
     }
-    console.log("End of RGdoi.js")
+    console.log("End of RGdoi.js");
 }
 
 
 function replaceElement(doi) {
     var divs = document.querySelectorAll(".publication-meta-secondary");
     var element = divs[0];
-    console.log("Wrapping hyperlink on " + element.innerHTML)
+    console.log("Wrapping hyperlink on " + element.innerHTML);
     var replace = '<a href="https://doi.org/' + doi +'">' + element.innerHTML +  '</a>';
     element.innerHTML = replace;
 }
@@ -53,7 +53,7 @@ function replaceElement(doi) {
 function replaceElementAfterLogin(doi) {
     var lis = document.querySelectorAll(".nova-e-list__item");
     var element = lis[3];
-    console.log("Wrapping hyperlink on " + element.innerHTML)
+    console.log("Wrapping hyperlink on " + element.innerHTML);
     var replace = '<a href="https://doi.org/' + doi +'">' + element.innerHTML +  '</a>';
     element.innerHTML = replace;
 }

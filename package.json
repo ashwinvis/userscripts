@@ -1,0 +1,29 @@
+{
+  "name": "userscripts",
+  "version": "0.0.5",
+  "description": "Userscripts for Greasemonkey",
+  "main": "RGdoi.user.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashwinvis/userscripts.git"
+  },
+  "keywords": [
+    "greasemonkey"
+  ],
+  "author": "Ashwin Vishnu",
+  "license": "GPL-3.0+",
+  "bugs": {
+    "url": "https://github.com/ashwinvis/userscripts/issues"
+  },
+  "homepage": "https://github.com/ashwinvis/userscripts#readme",
+  "devDependencies": {
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}
